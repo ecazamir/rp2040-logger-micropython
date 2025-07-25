@@ -17,7 +17,7 @@ Certain libraries won't be installable with mpremote. For these, go grab them di
 
 | Library | Required for |
 |---|---|
-| [Robert Hammelrath's ADS1x15 library](https://github.com/robert-hh/ads1x15/blob/master/ads1x15.py) | Adds support for ADC based on ADS1015 |
+| [Robert Hammelrath's ADS1x15 library](https://github.com/robert-hh/ads1x15/blob/master/ads1x15.py) | Adds support for ADC based on ADS1015 and ADS1115 |
 
 # Install the code
 
