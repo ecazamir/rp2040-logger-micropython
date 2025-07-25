@@ -100,10 +100,6 @@ def sync_rtc_from_hw_clock():
                 HW_RTC_RV_8803.get_hundredths(),
             )
         )
-        return
-
-    else:
-        return
 
 # Look for SparkFun RV-8803 module and display message
 if I2C_Attached_RTC_RV8803:
@@ -145,13 +141,12 @@ else:
 
 # Initialize the battery gauge
 if I2C_Addr_BG_MAX1704x in qwiic_i2c_device_addresses:
-    I2C_Attached_BG_MAX1704x = True
-
-if I2C_Attached_BG_MAX1704x:
     MAX1704x_BATTERY_GAUGE=qwiic_max1704x.QwiicMAX1704X(device_type=qwiic_max1704x.QwiicMAX1704X.kDeviceTypeMAX17048, address=I2C_Addr_BG_MAX1704x, i2c_driver=qwiic_i2c)
-    if (MAX1704x_BATTERY_GAUGE.is_connected()):
+    if MAX1704x_BATTERY_GAUGE.is_connected():
         MAX1704x_BATTERY_GAUGE.begin()
-        print("I2C connection to MAX1704x battery gauge")
+        # Only set the attached flag if the connection and begin() are successful
+        I2C_Attached_BG_MAX1704x = True
+        print("I2C connection to MAX1704x battery gauge successful.")
         print(f"  MAX1704x: Device ID: 0x{MAX1704x_BATTERY_GAUGE.get_id():02X}")
         print(f"  MAX1704x: Device version: 0x{MAX1704x_BATTERY_GAUGE.get_version():02X}")
         MAX1704x_BATTERY_GAUGE.reset()
@@ -172,7 +167,7 @@ if I2C_Attached_BG_MAX1704x:
         print(f"  MAX1704x: Hibernating: {MAX1704x_BATTERY_GAUGE.is_hibernating()}")  # Print the hibernation flag
         
     else:
-        print("I2C connection to MAX1704x battery gauge is unsuccessful")
+        print("I2C connection to MAX1704x battery gauge failed.")
 
 
 
