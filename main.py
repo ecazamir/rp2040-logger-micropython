@@ -44,7 +44,7 @@ def blink(low_watermark=1500.0, high_watermark=1600.0, current_value=0.0):
 
 
 def rgb_led_for_12v_efb(current_value=0.0):
-    critical_threshold = 11.580  # 21%
+    critical_threshold = 11.58  # 21%
     low_threshold = 12.00   # 45%
     good_threshold = 12.20  # 60%
     very_good_threshold = 12.42  # 80%
